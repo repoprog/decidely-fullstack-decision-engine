@@ -1,0 +1,27 @@
+app:
+  setup:
+    admin:
+      enabled: false
+      email: test@test.com
+      password: test
+      name: Test Admin
+
+  security:
+    cookies:
+      secure: false
+      same-site: Lax
+
+  demo:
+    enabled: true
+    email: demo@smartchoices.local
+    password: ""
+    name: Demo User
+
+jwt:
+  secret: bardzotajnyKluczDoTestowIntegracyjnychKtotryJestWystarczajacoDlugi123!
+  access-token-expiration: 900000
+  refresh-token-expiration: 604800000
+
+cors:
+  allowed-origins:
+    - http://localhost:5173
