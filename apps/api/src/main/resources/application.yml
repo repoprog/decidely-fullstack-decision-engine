@@ -98,6 +98,55 @@ app:
 spring:
   config:
     activate:
+      on-profile: prod
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  mvc:
+    async:
+      request-timeout: ${MVC_ASYNC_REQUEST_TIMEOUT:10000}
+
+app:
+  security:
+    cookies:
+      secure: ${COOKIE_SECURE:true}
+      same-site: ${COOKIE_SAME_SITE:None}
+
+  demo:
+    enabled: ${DEMO_LOGIN_ENABLED:false}
+    email: ${DEMO_USER_EMAIL:}
+    password: ${DEMO_USER_PASSWORD:}
+    name: ${DEMO_USER_NAME:Demo User}
+
+  setup:
+    admin:
+      enabled: ${ADMIN_SETUP_ENABLED:false}
+      email: ${ADMIN_EMAIL:}
+      password: ${ADMIN_PASSWORD:}
+      name: ${ADMIN_NAME:Administrator}
+
+
+---
+spring:
+  config:
+    activate:
       on-profile: test
 
   jpa:
